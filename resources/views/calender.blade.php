@@ -43,7 +43,7 @@
         }
         .search-container input {
             width: 100%;
-            padding: 10px 40px 10px 15px;
+            padding: 10px 40px 10px 36px;
             border: 1px solid #ddd;
             border-radius: 8px;
             font-size: 14px;
@@ -53,7 +53,9 @@
             left: 12px;
             top: 50%;
             transform: translateY(-50%);
-            color: #666;
+            color: #999;
+            font-size: 14px;
+            pointer-events: none;
         }
         .search-container .clear-search {
             position: absolute;
@@ -264,18 +266,18 @@
         <div class="filter-section">
             <h6>Priority</h6>
             <div class="filter-buttons" id="priorityFilters">
-                <button class="filter-btn priority-low" data-priority="low">Low</button>
-                <button class="filter-btn priority-medium" data-priority="medium">Medium</button>
-                <button class="filter-btn priority-high" data-priority="high">High</button>
+                <button type="button" class="filter-btn priority-low" data-priority="low">Low</button>
+                <button type="button" class="filter-btn priority-medium" data-priority="medium">Medium</button>
+                <button type="button" class="filter-btn priority-high" data-priority="high">High</button>
             </div>
         </div>
 
         <div class="filter-section">
             <h6>Category</h6>
             <div class="filter-buttons" id="categoryFilters">
-                <button class="filter-btn active" data-category="">All</button>
+                <button type="button" class="filter-btn active" data-category="">All</button>
                 @foreach($categories as $c)
-                    <button class="filter-btn" data-category="{{ $c }}">{{ $c }}</button>
+                    <button type="button" class="filter-btn" data-category="{{ $c }}">{{ $c }}</button>
                 @endforeach
             </div>
         </div>
@@ -283,9 +285,9 @@
         <div class="filter-section">
             <h6>Status</h6>
             <div class="filter-buttons" id="statusFilters">
-                <button class="filter-btn active" data-status="">All</button>
-                <button class="filter-btn" data-status="pending">Pending</button>
-                <button class="filter-btn" data-status="completed">Completed</button>
+                <button type="button" class="filter-btn active" data-status="">All</button>
+                <button type="button" class="filter-btn" data-status="pending">Pending</button>
+                <button type="button" class="filter-btn" data-status="completed">Completed</button>
             </div>
         </div>
     </div>
@@ -301,10 +303,10 @@
             </div>
 
             <div class="date-range-buttons">
-                <button class="date-range-btn active" data-range="today">Today</button>
-                <button class="date-range-btn" data-range="week">Week</button>
-                <button class="date-range-btn" data-range="month">Month</button>
-                <button class="date-range-btn" data-range="custom">Custom</button>
+                <button type="button" class="date-range-btn active" data-range="today">Today</button>
+                <button type="button" class="date-range-btn" data-range="week">Week</button>
+                <button type="button" class="date-range-btn" data-range="month">Month</button>
+                <button type="button" class="date-range-btn" data-range="custom">Custom</button>
             </div>
 
             <div class="custom-date-range" id="customDateRange">
@@ -350,9 +352,6 @@
     
     // Debug: Check what FullCalendar exposes
     window.addEventListener('load', function() {
-        console.log('Page loaded, checking FullCalendar...');
-        console.log('window.FullCalendar:', window.FullCalendar);
-        console.log('typeof FullCalendar:', typeof FullCalendar);
         if (window.FullCalendar) {
             console.log('FullCalendar.Calendar:', window.FullCalendar.Calendar);
         }

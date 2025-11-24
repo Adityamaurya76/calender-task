@@ -10,6 +10,7 @@
     let activePriority = '';
     let activeCategory = '';
     let activeStatus = '';
+    let activeDateRange = 'today';
     let currentRequest = null;
     
     function debounce(func, wait) {
@@ -309,7 +310,6 @@
                     return;
                 }
 
-                // Cancel previous request if still pending
                 if (currentRequest && currentRequest.readyState !== 4) {
                     currentRequest.abort();
                 }
@@ -331,11 +331,6 @@
                         
                         let tasks = res.tasks || [];
                         
-                        // Debug: Log filter state and task count
-                        console.log('Filter state:', { priority, category, status, search });
-                        console.log('Tasks before filtering:', tasks.length);
-                        
-                        // Apply all filters in a single pass for better performance
                         if (priority || category || status || search) {
                             const searchLower = search ? search.toLowerCase() : '';
                             const beforeCount = tasks.length;
@@ -361,8 +356,7 @@
                             $taskList.html('<div class="text-muted">' + message + '</div>');
                             return;
                         }
-
-                        // Use array map for better performance than string concatenation
+                        
                         const html = tasks.map(createTaskCard).join('');
                         $taskList.html(html);
                     })
