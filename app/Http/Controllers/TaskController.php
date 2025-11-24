@@ -108,6 +108,7 @@ class TaskController extends Controller
             'due_date' => 'required|date',
             'priority' => 'required|in:low,medium,high',
             'category' => 'nullable|string|max:100',
+            'status' => 'nullable|in:pending,completed',
         ]);
 
         if ($validate->fails()) {
@@ -121,7 +122,7 @@ class TaskController extends Controller
             'due_date' => $request->due_date,
             'priority' => $request->priority,
             'category' => $request->category,
-            'status' => 'pending',
+            'status' => $request->status ?? 'pending',
         ]);
 
         return response()->json(['status'=>'ok','task'=>$task]);

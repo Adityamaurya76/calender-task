@@ -196,13 +196,14 @@
             const $dueDate = $('#due_date');
             const $priority = $('#priority');
             const $category = $('#category');
+            const $status = $('#status');
             const $formErrors = $('#formErrors');
             
             $openAddModal.on('click', function(){
                 clearModal();
                 $taskModalLabel.text('Add Task');
                 $deleteTaskBtn.hide();
-                $dueDate.val(selectedDate);
+                $dueDate.val(selectedDate || '');
                 new bootstrap.Modal($taskModal[0]).show();
             });
 
@@ -216,7 +217,8 @@
                     description: $description.val(),
                     due_date: $dueDate.val(),
                     priority: $priority.val(),
-                    category: $category.val()
+                    category: $category.val(),
+                    status: $status.val() || 'pending'
                 };
 
                 if(!data.due_date){
@@ -379,9 +381,10 @@
                         $taskId.val(t.id);
                         $title.val(t.title);
                         $description.val(t.description);
-                        $dueDate.val(t.due_date);
+                        $dueDate.val(normalizeDate(t.due_date));
                         $priority.val(t.priority);
                         $category.val(t.category);
+                        $status.val(t.status || 'pending');
                         $taskModalLabel.text('Edit Task');
                         $deleteTaskBtn.show();
                         new bootstrap.Modal($taskModal[0]).show();
@@ -420,6 +423,7 @@
                 $dueDate.val('');
                 $priority.val('medium');
                 $category.val('');
+                $status.val('pending');
                 $formErrors.text('');
             }
 

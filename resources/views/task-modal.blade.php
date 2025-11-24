@@ -39,6 +39,13 @@
                   <option>Education</option>
               </select>
           </div>
+          <div class="mb-3">
+              <label class="form-label">Status</label>
+              <select name="status" id="status" class="form-select">
+                  <option value="pending" selected>Pending</option>
+                  <option value="completed">Completed</option>
+              </select>
+          </div>
           <div id="formErrors" class="text-danger"></div>
       </div>
       <div class="modal-footer">
